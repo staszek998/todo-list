@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoCreator from './components/TodoCreator';
 import FilterSelector from './components/FilterSelector';
+import TodoList from './components/TodoList';
 
 class Main extends Component {
   render() {
@@ -10,11 +11,7 @@ class Main extends Component {
           <TodoCreator />
           <FilterSelector />
         </div>
-        <div className="row">
-          <div className="col-12">
-            <h2>Here will be displayed your tasks</h2>
-          </div>
-        </div>
+        <TodoList />
       </div>
     );
   }
