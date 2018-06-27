@@ -48,9 +48,9 @@ const visibilityFilter = (state = SHOW_ALL, action) => {
   }
 };
 
-const combinedReducers;
-
-export default (combinedReducers = combineReducers({
+const combinedReducers = combineReducers({
   todos,
   visibilityFilter
-}));
+});
+
+export default combinedReducers;
