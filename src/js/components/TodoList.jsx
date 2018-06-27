@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
+import { toggleTodo, removeTodo } from '../redux/actionCreators';
+import { connect } from 'react-redux';
 
 class TodoList extends Component {
   render() {
@@ -9,15 +11,40 @@ class TodoList extends Component {
           <div className="row">
             <h1 className="display-1">To do</h1>
           </div>
-          <Todo text="Test todo 1" />
-          <Todo text="Test todo 2" />
-          <Todo text="Test todo 3" />
-          <Todo text="Test todo 4" />
-          <Todo text="Test todo 5" />
+          {this.props.todos.map((todo, index) => {
+            return (
+              <Todo
+                key={index}
+                text={todo.text}
+                toggleTodo={() => this.props.toggleTodo(index)}
+                removeTodo={() => this.props.removeTodo(index)}
+              />
+            );
+          })}
         </div>
       </div>
     );
   }
 }
 
-export default TodoList;
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleTodo: index => {
+      dispatch(toggleTodo(index));
+    },
+    removeTodo: index => {
+      dispatch(removeTodo(index));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList);
