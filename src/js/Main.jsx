@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TodoCreator from './components/TodoCreator';
 import FilterSelector from './components/FilterSelector';
 import TodoList from './components/TodoList';
+import TodoCreator from './components/TodoCreator';
 
 class Main extends Component {
   render() {
