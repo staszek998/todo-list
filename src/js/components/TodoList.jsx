@@ -15,7 +15,7 @@ class TodoList extends Component {
             return (
               <Todo
                 key={index}
-                text={todo.text}
+                {...todo}
                 toggleTodo={() => this.props.toggleTodo(index)}
                 removeTodo={() => this.props.removeTodo(index)}
               />

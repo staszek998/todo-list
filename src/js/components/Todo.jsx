@@ -7,7 +7,11 @@ class Todo extends Component {
       <div className="card card-body">
         <div className="row">
           <div className="col-1">
-            <input type="checkbox" onClick={this.props.toggleTodo} />
+            {this.props.completed ? (
+              <input type="checkbox" onClick={this.props.toggleTodo} checked />
+            ) : (
+              <input type="checkbox" onClick={this.props.toggleTodo} />
+            )}
           </div>
           <div className="col-10">
             <h4>{this.props.text}</h4>
