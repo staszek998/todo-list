@@ -5,7 +5,10 @@ import combinedReducers from './js/redux/reducers';
 import Main from './js/Main';
 import './App.css';
 
-const store = createStore(combinedReducers);
+const store = createStore(
+  combinedReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class App extends Component {
   render() {
