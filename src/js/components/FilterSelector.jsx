@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { visibilityFilters } from '../redux/actionTypes';
 import { setVisibilityFilter } from '../redux/actionCreators';
 import { connect } from 'react-redux';
+import { EALREADY } from 'constants';
 
 const { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } = visibilityFilters;
 
-const clearActiveState = (labelOne, labelTwo, labelThree) => {
-  labelOne.classList.remove('active');
-  labelTwo.classList.remove('active');
-  labelThree.classList.remove('active');
+const clearActiveState = labelsToSetInactive => {
+  labelsToSetInactive.forEach(label => {
+    label.classList.remove('active');
+  });
 };
 
-const setActive = label => {
-  label.classList.add('active');
+const changeActiveState = (labelToSetActive, allLabels) => {
+  clearActiveState(allLabels);
+  labelToSetActive.classList.add('active');
 };
 
 class FilterSelector extends Component {
@@ -29,9 +31,8 @@ class FilterSelector extends Component {
             <input
               type="radio"
               onClick={() => {
-                clearActiveState(buttonAll, buttonActive, buttonCompleted);
+                changeActiveState(buttonAll, [buttonActive, buttonCompleted]);
                 this.props.dispatch(setVisibilityFilter(SHOW_ALL));
-                setActive(buttonAll);
               }}
             />All
           </label>
@@ -42,9 +43,8 @@ class FilterSelector extends Component {
             <input
               type="radio"
               onClick={() => {
-                clearActiveState(buttonAll, buttonActive, buttonCompleted);
+                changeActiveState(buttonActive, [buttonAll, buttonCompleted]);
                 this.props.dispatch(setVisibilityFilter(SHOW_ACTIVE));
-                setActive(buttonActive);
               }}
             />Active
           </label>
@@ -55,9 +55,8 @@ class FilterSelector extends Component {
             <input
               type="radio"
               onClick={() => {
-                clearActiveState(buttonAll, buttonActive, buttonCompleted);
+                changeActiveState(buttonCompleted, [buttonActive, buttonAll]);
                 this.props.dispatch(setVisibilityFilter(SHOW_COMPLETED));
-                setActive(buttonCompleted);
               }}
             />Completed
           </label>

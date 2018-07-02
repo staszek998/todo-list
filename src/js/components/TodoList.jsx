@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Todo from './Todo';
 import { toggleTodo, removeTodo } from '../redux/actionCreators';
 import { connect } from 'react-redux';
+import { visibilityFilters } from '../redux/actionTypes';
 
 class TodoList extends Component {
   render() {
@@ -29,7 +30,8 @@ class TodoList extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    visibilityFilter: state.visibilityFilter
   };
 };
 
